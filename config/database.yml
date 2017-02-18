@@ -1,0 +1,18 @@
+default:
+  adapter: mysql2
+  database: spinhappy
+  username: brianmaster
+  password: sucko224688
+  host: localhost
+development:
+  adapter: mysql2
+  database: spinhappy
+  username: brianmaster
+  password: sucko224688
+  host: localhost
+production:
+  adapter: mysql2
+  database: spinhappy
+  username: brianmaster
+  password: sucko224688
+  host: localhost
