@@ -25,14 +25,27 @@ class AccountController < ApplicationController
     password_salt = BCrypt::Engine.generate_salt
     password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
 
-    #new model(new account create in the model(from params to variables to here to the db)
+    #new model(new person created (from params
+    #to variables to here to the db)
     @model = Account.new
     @model.username = @username
     @model.email = @email
     @model.first_name = @first_name
     @model.last_name = @last_name
-    @model
+    @model.liberal = @liberal
+    @model.moderate = @moderate
+    @model.conservative = @conservative
+    @model.password_hash = @password_hash
+    @model.password_salt = @password_salt
+    #make sure the new person is saved:
+    @model.save
 
+    @account_message = "you have successfully registered and are logged in!"
+
+    #this means that when they have registered, they are also logged in:
+    session[:user] = @model
+
+    erb: login_notice
 
   end
 
@@ -41,6 +54,21 @@ class AccountController < ApplicationController
     @username = params[:username]
     @password = params[:password]
     @email = params[:email]
+
+    if does_user_exist?(@username) == true
+      @account_message = "user already exists"
+      return erb :login_notice
+    end
+
+    @model = Acccount.where(:username => @username).first!
+    #if password provided matches the password along with the salt in the db:
+    if @model.password_hash == BCrypt::Engine.hash_secret(@password, @model.password_salt)
+      @account_message = "Welcome Back!"
+      session[:user] = @model
+      return erb :login_notice
+    else
+      @account_message = "Sorry, your password did not match.  Try again?"
+      return erb :login_notice
   end
 
   get '/logout' do
