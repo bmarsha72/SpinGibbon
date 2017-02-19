@@ -25,12 +25,22 @@ class ApplicationController < Sinatra::Base
       return true
     else
       return false
-    end 
+    end
   end
 
   def is_not_authenticated
     session[:user].nil? #bool
   end
+
+  get '/' do
+    {:message => 'HELLO GRAHAM'}.to_json
+  end
+
+
+
+
+
+  
 
 
 end

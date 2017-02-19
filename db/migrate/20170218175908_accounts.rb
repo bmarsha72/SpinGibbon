@@ -3,6 +3,7 @@ class Accounts < ActiveRecord::Migration[5.0]
     create_table :accounts do |table|
       table.string :first_name
       table.string :last_name
+      table.string :username
       table.string :email
       table.string :password_hash
       table.string :password_salt
