@@ -2,6 +2,7 @@ class AccountController < ApplicationController
 
   get '/' do
     #login registration page
+    erb :login
   end
 
   post '/register' do
@@ -18,14 +19,14 @@ class AccountController < ApplicationController
     @conservative = params[:conservative]
 
     if does_user_exist?(@username) == true
-      @account_message = "User already exists"
+      @account_message = "Username already exists"
       return erb :login_notice
     end
 
     password_salt = BCrypt::Engine.generate_salt
     password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
 
-    #new model(new person created (from params
+    #new model(new person) created (from params
     #to variables to here to the db)
     @model = Account.new
     @model.username = @username
@@ -45,7 +46,7 @@ class AccountController < ApplicationController
     #this means that when they have registered, they are also logged in:
     session[:user] = @model
 
-    erb: login_notice
+    erb :login_notice
 
   end
 
@@ -53,17 +54,18 @@ class AccountController < ApplicationController
     #check params if user exists and if so, log them in
     @username = params[:username]
     @password = params[:password]
-    @email = params[:email]
+    @email = params[:email] #optional
 
     if does_user_exist?(@username) == true
-      @account_message = "user already exists"
+      @account_message = "Sorry, wrong username"
       return erb :login_notice
     end
 
     @model = Acccount.where(:username => @username).first!
-    #if password provided matches the password along with the salt in the db:
+    #if password provided matches the password along with the salt that's in the db:
     if @model.password_hash == BCrypt::Engine.hash_secret(@password, @model.password_salt)
       @account_message = "Welcome Back!"
+      #make the session equal to the person (the @model)
       session[:user] = @model
       return erb :login_notice
     else
@@ -83,4 +85,5 @@ class AccountController < ApplicationController
     #logged-in users
 
   end
+end
 end
