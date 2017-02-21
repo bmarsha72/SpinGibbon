@@ -1,7 +1,45 @@
-<section class='login'>
-  <h4>Welcome back, login!</h4>
-</section>
+<style>
+.form-group{
+  max-width: 300px;
+  margin-left: 20px;
+}
+</style>
+<section class='login' style="margin-left:20px">
 
-<section class='register'>
-  <h4>Want to register?</h4>
+  <form class="form-horizontal" action="/account/login" method="post">
+      <h4>Login</h4>
+      <div class="form-group">
+        <label for="Username1">Username</label>
+        <input type="text" class="form-control" id="Username1" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="Email1">Email address</label>
+        <input type="email" class="form-control" id="Email1" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="Password1" placeholder="Password">
+      </div>
+      <button type="submit" class="btn btn-default">Login</button>
+  </form>
+</section>
+<br><br>
+<section class='register' style="margin-left:20px">
+
+  <form class="form-horizontal" action="/account/register" method="post">
+    <h4>Register</h4>
+      <div class="form-group">
+        <label for="Username1">Username</label>
+        <input type="text" class="form-control" id="Username1" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="Email1">Email address</label>
+        <input type="email" class="form-control" id="Email1" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword1">Password</label>
+        <input type="password" class="form-control" id="Password1" placeholder="Password">
+      </div>
+    <button type="submit" class="btn btn-default">Register</button>
+  </form>
 </section>

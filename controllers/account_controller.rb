@@ -26,6 +26,8 @@ class AccountController < ApplicationController
     password_salt = BCrypt::Engine.generate_salt
     password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
 
+  
+
     #new model(new person) created (from params
     #to variables to here to the db)
     @model = Account.new
