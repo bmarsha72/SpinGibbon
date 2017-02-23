@@ -18,15 +18,26 @@ class AccountController < ApplicationController
     @moderate = params[:moderate]
     @conservative = params[:conservative]
 
-    if does_user_exist?(@username) == true
-      @account_message = "Username already exists"
+    if does_user_exist?(@username) == false
+      @account_message = "User already exists"
       return erb :login_notice
     end
+
+
+    if param[:liberal].present?
+      @account_message = "param is present"
+      return erb :login_notice
+    else
+      @account_message = "param is not present"
+      return erb :paramnotfound.erb
+    end
+
+
 
     password_salt = BCrypt::Engine.generate_salt
     password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
 
-  
+
 
     #new model(new person) created (from params
     #to variables to here to the db)
@@ -38,9 +49,8 @@ class AccountController < ApplicationController
     @model.liberal = @liberal
     @model.moderate = @moderate
     @model.conservative = @conservative
-    @model.password_hash = @password_hash
-    @model.password_salt = @password_salt
-    #make sure the new person is saved:
+    @model.password_hash = password_hash
+    @model.password_salt = password_salt
     @model.save
 
     @account_message = "you have successfully registered and are logged in!"
@@ -59,7 +69,7 @@ class AccountController < ApplicationController
     @email = params[:email] #optional
 
     if does_user_exist?(@username) == true
-      @account_message = "Sorry, wrong username"
+      @account_message = "User Already Exists"
       return erb :login_notice
     end
 
@@ -67,7 +77,7 @@ class AccountController < ApplicationController
     #if password provided matches the password along with the salt that's in the db:
     if @model.password_hash == BCrypt::Engine.hash_secret(@password, @model.password_salt)
       @account_message = "Welcome Back!"
-      #make the session equal to the person (the @model)
+      #make the session user(the person who is signed in) equal to the person (the @model)
       session[:user] = @model
       return erb :login_notice
     else

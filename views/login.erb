@@ -1,44 +1,92 @@
 <style>
-.form-group{
+.form-horizontal{
   max-width: 300px;
   margin-left: 20px;
 }
 </style>
+
+
 <section class='login' style="margin-left:20px">
 
   <form class="form-horizontal" action="/account/login" method="post">
       <h4>Login</h4>
       <div class="form-group">
-        <label for="Username1">Username</label>
-        <input type="text" class="form-control" id="Username1" placeholder="Email">
+        <label for="Username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Email">
       </div>
       <div class="form-group">
-        <label for="Email1">Email address</label>
-        <input type="email" class="form-control" id="Email1" placeholder="Email">
+        <label for="Email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Email">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="Password1" placeholder="Password">
+        <input type="password" class="form-control" id="password" placeholder="Password">
       </div>
       <button type="submit" class="btn btn-default">Login</button>
   </form>
 </section>
+
+
 <br><br>
+
+
+
+
 <section class='register' style="margin-left:20px">
 
   <form class="form-horizontal" action="/account/register" method="post">
     <h4>Register</h4>
       <div class="form-group">
-        <label for="Username1">Username</label>
-        <input type="text" class="form-control" id="Username1" placeholder="Email">
+        <label for="first_name">First Name</label>
+        <input type="text" class="form-control" id="first_name" placeholder="First Name">
       </div>
       <div class="form-group">
-        <label for="Email1">Email address</label>
-        <input type="email" class="form-control" id="Email1" placeholder="Email">
+        <label for="last_name">Last Name</label>
+        <input type="text" class="form-control" id="last_name" placeholder="Last Name">
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="Password1" placeholder="Password">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" id="username" placeholder="Username">
+      </div>
+      <div class="form-group">
+        <label for="Email">Email address</label>
+        <input type="email" class="form-control" id="email" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="Password">Password</label>
+        <input type="password" class="form-control" id="password" placeholder="Password">
+      </div>
+      <div class="form-group">
+        <label for="Liberal">Liberal Choice</label>
+      <select class="form-control" id="liberal">
+        <!--<option>Select One</option>
+        <option>Huffington Post</option>
+        <option>Slate</option>-->
+        <option>Al Jazeera</option>
+        <!--<option>NY Times</option>
+        <option>Washington Post</option>
+        <option>Mother Jones</option>-->
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="Moderate">Moderate Choice</label>
+      <select class="form-control" id="Moderate">
+        <option>Select One</option>
+        <option>bbc</option>
+        <option>NPR</option>
+        <option>NPR</option>
+        <option>Wall Street Journal</option>
+        <option>Google News</option>
+      </select>
+      </div>
+      <div class="form-group">
+        <label for="Conservative">Conservative Choice</label>
+      <select class="form-control" id="Convervative">
+        <option>Select One</option>
+        <option>Breitbart</option>
+        <option>Fox</option>
+        <option>The Blaze</option>
+      </select>
       </div>
     <button type="submit" class="btn btn-default">Register</button>
   </form>
