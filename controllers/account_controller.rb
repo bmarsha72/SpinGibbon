@@ -23,21 +23,8 @@ class AccountController < ApplicationController
       return erb :login_notice
     end
 
-
-    if param[:liberal].present?
-      @account_message = "param is present"
-      return erb :login_notice
-    else
-      @account_message = "param is not present"
-      return erb :paramnotfound.erb
-    end
-
-
-
     password_salt = BCrypt::Engine.generate_salt
     password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
-
-
 
     #new model(new person) created (from params
     #to variables to here to the db)
@@ -66,15 +53,16 @@ class AccountController < ApplicationController
     #check params if user exists and if so, log them in
     @username = params[:username]
     @password = params[:password]
-    @email = params[:email] #optional
+    #@email = params[:email] #optional
 
     if does_user_exist?(@username) == true
       @account_message = "User Already Exists"
       return erb :login_notice
     end
 
+    #could also use Account.find...
     @model = Acccount.where(:username => @username).first!
-    #if password provided matches the password along with the salt that's in the db:
+    #if password provided matches the password provided along with the salt that's in the db:
     if @model.password_hash == BCrypt::Engine.hash_secret(@password, @model.password_salt)
       @account_message = "Welcome Back!"
       #make the session user(the person who is signed in) equal to the person (the @model)

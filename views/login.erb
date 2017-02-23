@@ -1,11 +1,65 @@
-<style>
+<section class='login'>
+  <h4>Welcome back, login</h4>
+  <form action='/account/login' method='post'>
+  <input type="text" name="username" placeholder="username">
+  <input type="email" name="email" placeholder="email">
+  <input type="password" name="password" placeholder="password">
+  <button type="submit" class="btn btn-default" value "login">login</button>
+</section>
+
+<section class='register'>
+  <h4>Want to register?</h4>
+    <form action='/account/register' method='post'>
+      <!--<input type="text" name="first_name" placeholder="first name">
+      <input type="text" name="last_name" placeholder="last name">-->
+      <input type="text" name="username" placeholder="username">
+      <input type="email" name="email" placeholder="email">
+      <input type="password" name="password" placeholder="password">
+      <!--<select name="liberal">
+          <option type="text" value="aljazeera">aljazeera</option>
+          <option type="text" value="slate">slate</option>
+      </select>
+      <select name="moderate">
+          <option type="text" value="bbc">bbc</option>
+          <option type="text" value="reuters">reuters</option>
+      </select>
+      <select name="conservative">
+          <option type="text" value="breitbart">breitbart</option>
+          <option type="text" value="the_blaze">the blaze</option>
+      </select>-->
+      <input type="submit" value="register"></input>
+    </form>
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<style>
 .form-horizontal{
   max-width: 300px;
   margin-left: 20px;
 }
 </style>
-
-
 <section class='login' style="margin-left:20px">
 
   <form class="form-horizontal" action="/account/login" method="post">
@@ -25,15 +79,8 @@
       <button type="submit" class="btn btn-default">Login</button>
   </form>
 </section>
-
-
 <br><br>
-
-
-
-
 <section class='register' style="margin-left:20px">
-
   <form class="form-horizontal" action="/account/register" method="post">
     <h4>Register</h4>
       <div class="form-group">
@@ -59,13 +106,13 @@
       <div class="form-group">
         <label for="Liberal">Liberal Choice</label>
       <select class="form-control" id="liberal">
-        <!--<option>Select One</option>
+        <option>Select One</option>
         <option>Huffington Post</option>
-        <option>Slate</option>-->
+        <option>Slate</option>
         <option>Al Jazeera</option>
-        <!--<option>NY Times</option>
+        <option>NY Times</option>
         <option>Washington Post</option>
-        <option>Mother Jones</option>-->
+        <option>Mother Jones</option>
       </select>
       </div>
       <div class="form-group">
@@ -90,4 +137,4 @@
       </div>
     <button type="submit" class="btn btn-default">Register</button>
   </form>
-</section>
+</section>-->
