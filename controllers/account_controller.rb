@@ -53,7 +53,7 @@ class AccountController < ApplicationController
     #check params if user exists and if so, log them in
     @username = params[:username]
     @password = params[:password]
-    #@email = params[:email] #optional
+    @email = params[:email] #optional
 
     if does_user_exist?(@username) == true
       @account_message = "User Already Exists"
@@ -61,7 +61,7 @@ class AccountController < ApplicationController
     end
 
     #could also use Account.find...
-    @model = Acccount.where(:username => @username).first!
+    @model = Acccount.find_by(:username => @username).first!
     #if password provided matches the password provided along with the salt that's in the db:
     if @model.password_hash == BCrypt::Engine.hash_secret(@password, @model.password_salt)
       @account_message = "Welcome Back!"
