@@ -2,42 +2,43 @@ class AccountController < ApplicationController
 
   get '/' do
     #login registration page
-    erb :login
+    erb :login, layout: :layout
   end
 
   post '/register' do
     #accept params from a post to create a user (bcrypt)
     #these are all the fields in the database table coming from
     #params as a post from the page
-    @username = params[:username]
-    @password = params[:password]
-    @email = params[:email]
-    @first_name = params[:first_name]
-    @last_name = params[:last_name]
-    @liberal = params[:liberal]
-    @moderate = params[:moderate]
-    @conservative = params[:conservative]
+    # @username = params[:username]
+    # @password = params[:password]
+    # @email = params[:email]
+    # @first_name = params[:first_name]
+    # @last_name = params[:last_name]
+    # @liberal = params[:liberal]
+    # @moderate = params[:moderate]
+    # @conservative = params[:conservative]
 
     if does_user_exist?(@username) == false
       @account_message = "User already exists"
       return erb :login_notice
     end
 
-    password_salt = BCrypt::Engine.generate_salt
-    password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
+    # password_salt = BCrypt::Engine.generate_salt
+    # password_hash = BCrypt::Engine.hash_secret(@password, password_salt)
+    password_hash = BCrypt::Password.create(params[:password])
 
     #new model(new person) created (from params
     #to variables to here to the db)
-    @model = Account.new
-    @model.username = @username
-    @model.email = @email
-    @model.first_name = @first_name
-    @model.last_name = @last_name
-    @model.liberal = @liberal
-    @model.moderate = @moderate
-    @model.conservative = @conservative
-    @model.password_hash = password_hash
-    @model.password_salt = password_salt
+    @model = Account.new(username: params[:username], email: params[:email], first_name: params[:first_name], last_name: params[:last_name], liberal: params[:liberal], moderate: params[:moderate], conservative: params[:conservative], password_hash: password_hash)
+    # @model.username = @username
+    # @model.email = @email
+    # @model.first_name = @first_name
+    # @model.last_name = @last_name
+    # @model.liberal = @liberal
+    # @model.moderate = @moderate
+    # @model.conservative = @conservative
+    # @model.password_hash = password_hash
+    # @model.password_salt = password_salt
     @model.save
 
     @account_message = "you have successfully registered and are logged in!"
