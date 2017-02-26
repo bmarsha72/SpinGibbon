@@ -61,7 +61,8 @@ class AccountController < ApplicationController
     end
 
     #could also use Account.find...
-    @model = Acccount.find_by(:username => @username).first!
+    @user = Acccount.find_by(username: params[:username])
+    
     #if password provided matches the password provided along with the salt that's in the db:
     if @model.password_hash == BCrypt::Engine.hash_secret(@password, @model.password_salt)
       @account_message = "Welcome Back!"
